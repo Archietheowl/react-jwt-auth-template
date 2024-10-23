@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as authService from '../../services/authService'
+import { signup } from '../../services/authService'
 
 const SignupForm = (props) => {
     //Variables
@@ -28,7 +28,7 @@ const SignupForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const newUserResponse = await authService.signup(formData)
+            const { data} = await signup(formData)
             props.setUser(formData) // Modify the state in the App component (so is this lifting state)
             navigate('/')    
         } catch (error) {
